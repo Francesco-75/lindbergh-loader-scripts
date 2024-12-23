@@ -98,7 +98,7 @@ echo "*                                                                         
 echo "*            If you found this software useful, consider supporting it!         *"
 echo "*                                                                               *"
 echo "*            You can donate or support via Patreon:                             *"
-echo "*                    https://www.patreon.com                                    *"
+echo "*                     https://patreon.com/LindberghLoader                       *"
 echo "*                                                                               *"
 echo "*           Any contributions are greatly appreciated to keep development       *"
 echo "*           going and improve future projects!                                  *"
