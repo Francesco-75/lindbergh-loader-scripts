@@ -7,3 +7,6 @@ chmod +x filename.sh
 Then you can execute it like this:
 
 ./filename.sh
+
+
+lloader-v6.sh will install all the lindbergh loader requirements and autocompile the loader for you
