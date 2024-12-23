@@ -75,6 +75,8 @@ sudo apt-get install -y libncurses5:i386
 sudo apt install -y libasound2-dev:i386
 sudo apt install -y alsa-utils:i386
 sudo apt-get install -y libasound2-plugins:i386
+sudo apt install -y pipewire-audio-client-libraries:i386
+sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 # Clone the Lindbergh Loader repository
 echo "Cloning the Lindbergh Loader repository..."
