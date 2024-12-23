@@ -98,7 +98,8 @@ echo "*                                                                         
 echo "*            If you found this software useful, consider supporting it!         *"
 echo "*                                                                               *"
 echo "*            You can donate or support via Patreon:                             *"
-echo "*                     https://patreon.com/LindberghLoader                       *"
+echo "*                                                                               *"
+echo "*                https://patreon.com/LindberghLoader                            *"
 echo "*                                                                               *"
 echo "*           Any contributions are greatly appreciated to keep development       *"
 echo "*           going and improve future projects!                                  *"
@@ -113,14 +114,6 @@ echo "*                                                                         
 echo "*********************************************************************************"
 
 # Install Theme
-
-echo "****************************************************************************"
-echo "*                                                                          *"
-echo "*           Welcome to the Lindbergh Plymouth Theme Installer              *"
-echo "*                                                                          *"
-echo "*                   Installing required packages...                        *"
-echo "*                                                                          *"
-echo "****************************************************************************"
 
 # Define the target directories and the URL of the repository
 REPO_URL="https://github.com/Francesco-75/lindbergh-plymouth.git"
