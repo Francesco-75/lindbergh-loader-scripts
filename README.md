@@ -1,5 +1,6 @@
 ![Screenshot from 2024-12-23 22-09-46](https://github.com/user-attachments/assets/4950c1e7-249c-4b7c-b6af-59f4b8b1a657)
 
+![install-script](https://github.com/user-attachments/assets/f7caefee-ddce-491e-8ee5-ed18f2fb8d5c)
 
 
 These scripts are for ubuntu-22.04.5-desktop-amd64.iso based os installation
