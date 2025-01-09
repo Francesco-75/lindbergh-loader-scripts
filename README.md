@@ -5,7 +5,7 @@
 
 These scripts are for a fresh ubuntu-22.04.5-desktop-amd64.iso based os installation
 
-DON'T USE ON ANY OTHER VERSIONE THEN THE UBUNTU 22.04.5 !!!
+DON'T USE ON ANY OTHER VERSION THEN THE UBUNTU 22.04.5 !!!
 
 mark the scripts as executable:
 
