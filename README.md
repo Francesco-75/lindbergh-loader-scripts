@@ -3,7 +3,9 @@
 ![install-script](https://github.com/user-attachments/assets/f7caefee-ddce-491e-8ee5-ed18f2fb8d5c)
 
 
-These scripts are for ubuntu-22.04.5-desktop-amd64.iso based os installation
+These scripts are for a fresh ubuntu-22.04.5-desktop-amd64.iso based os installation
+
+DON'T USE ON ANY OTHER VERSIONE THEN THE UBUNTU 22.04.5 !!!
 
 mark the scripts as executable:
 
@@ -19,3 +21,5 @@ lloader-v6.sh will install all the lindbergh loader requirements and autocompile
 lindbergh-plymouth.sh will install a simple lindbergh loader plymouth boot theme
 
 Feel free to report me bugs!
+
+USE AT YOUR OWN RISK
