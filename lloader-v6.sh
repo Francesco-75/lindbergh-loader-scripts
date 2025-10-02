@@ -8,44 +8,20 @@ echo "*  ██║     ██║██║╚██╗██║██║  ██�
 echo "*  ███████╗██║██║ ╚████║██████╔╝██████╔╝███████╗██║  ██║╚██████╔╝██║  ██║  *"
 echo "*  ╚══════╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝  *"
 echo "*                                                                          *"
-echo "*        ██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗                  *"
-echo "*        ██║     ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗                 *"
-echo "*        ██║     ██║   ██║███████║██║  ██║█████╗  ██████╔╝                 *"
-echo "*        ██║     ██║   ██║██╔══██║██║  ██║██╔══╝  ██╔══██╗                 *"
-echo "*        ███████╗╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║                 *"
-echo "*        ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝                 *"
-echo "*                                                                          *"
 echo "*           Welcome to the Automated Package Installer                     *"
 echo "*                                                                          *"
 echo "*                   Installing required packages...                        *"
 echo "*                                                                          *"
 echo "****************************************************************************"
 
-# Ask if the user uses an Intel/AMD GPU
-read -p "Do you use an Intel/AMD GPU? (yes/no): " user_response
+# (RIMOSSO: prompt Intel/AMD GPU)
 
-if [[ "$user_response" == "yes" || "$user_response" == "y" ]]; then
-    echo "You use an Intel GPU. Proceeding with the necessary PPA and upgrade..."
-    
-    # Add Intel-specific PPA and update system
-    sudo add-apt-repository ppa:kisak/kisak-mesa
-    sudo apt update
-    sudo apt upgrade -y
-else
-    echo "No Intel GPU detected. Skipping Intel-specific setup."
-fi
-
-# Add current user to dialout and input groups
 echo "Adding user $USER to dialout and input groups..."
 sudo usermod -a -G dialout,input $USER
 
-# Add i386 architecture
 sudo dpkg --add-architecture i386
-
-# Update package list
 sudo apt update
 
-# Install Git if not already installed
 echo "Checking if Git is installed..."
 if ! command -v git &> /dev/null; then
     echo "Git not found, installing Git..."
@@ -54,8 +30,6 @@ else
     echo "Git is already installed."
 fi
 
-# Install necessary packages
-#sudo apt install -y gcc-multilib
 sudo dpkg --add-architecture i386
 sudo apt update -y
 sudo apt upgrade -y
@@ -78,53 +52,57 @@ sudo apt-get install -y libasound2-plugins:i386
 sudo apt install -y pipewire-audio-client-libraries:i386
 sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
-# Clone the Lindbergh Loader repository
 echo "Cloning the Lindbergh Loader repository..."
 git clone https://github.com/lindbergh-loader/lindbergh-loader.git
 
-# Change directory to the cloned repository
 cd lindbergh-loader
 
-# Build and install Lindbergh Loader
+# Esecuzione script appimage prima del make
+if [ -f "scripts/appimage/install-packages.sh" ] && [ -f "scripts/appimage/build-deps.sh" ]; then
+    echo "Running pre-build scripts (install-packages.sh & build-deps.sh)..."
+    chmod +x scripts/appimage/install-packages.sh scripts/appimage/build-deps.sh 2>/dev/null
+    ( cd scripts/appimage && ./install-packages.sh && ./build-deps.sh )
+else
+    echo "One or both required scripts not found in scripts/appimage/. Continuo comunque..."
+fi
+
 echo "Building and installing Lindbergh Loader..."
 make
 
-# Open the build directory in the file manager
+# Creazione config e controls usando l'eseguibile nella cartella build
+if [ -f "build/lindbergh" ]; then
+    echo "Creating default config with build/lindbergh..."
+    ( cd build && ./lindbergh --create config )
+    echo "Creating default controls with build/lindbergh..."
+    ( cd build && ./lindbergh --create controls )
+elif [ -f "./lindbergh" ]; then
+    echo "Fallback: eseguibile trovato in root repo."
+    ./lindbergh --create config
+    ./lindbergh --create controls
+else
+    echo "Attenzione: eseguibile lindbergh non trovato né in build/ né nella root."
+fi
+
 echo "Opening the build directory..."
 cd ..
 xdg-open "$(pwd)/lindbergh-loader/build" &
 
-# Final Banner for Patreon/Donation
 echo "*********************************************************************************"
-echo "*                                                                               *"
 echo "*            If you found this software useful, consider supporting it!         *"
-echo "*                                                                               *"
-echo "*            You can donate or support via Patreon:                             *"
-echo "*                                                                               *"
 echo "*                https://patreon.com/LindberghLoader                            *"
-echo "*                                                                               *"
-echo "*           Any contributions are greatly appreciated to keep development       *"
-echo "*           going and improve future projects!                                  *"
-echo "*                                                                               *"
 echo "*********************************************************************************"
 
-# Completion message
 echo "*********************************************************************************"
-echo "*                                                                               *"
 echo "*          All packages installed and Lindbergh Loader built successfully!      *"
-echo "*                                                                               *"
 echo "*********************************************************************************"
 
 # Install Theme
-
-# Define the target directories and the URL of the repository
 REPO_URL="https://github.com/Francesco-75/lindbergh-plymouth.git"
 REPO_DIR="$HOME/Downloads/lindbergh-plymouth"
 BACKGROUND_IMAGE="$REPO_DIR/loader-background.png"
-DEST_DIR="$HOME/Pictures"  # Correctly use the $HOME variable for the Pictures directory
+DEST_DIR="$HOME/Pictures"
 IMAGE_PATH="$HOME/Pictures/loader-background.png"
 
-# Step 1: Clone the repository
 if [ ! -d "$REPO_DIR" ]; then
   echo "Cloning repository..."
   git clone "$REPO_URL" "$REPO_DIR"
@@ -133,7 +111,6 @@ else
   cd "$REPO_DIR" && git pull
 fi
 
-# Step 2: Check if the background image exists and copy it
 if [ -f "$BACKGROUND_IMAGE" ]; then
   echo "Copying the background image to $DEST_DIR..."
   cp "$BACKGROUND_IMAGE" "$DEST_DIR"
@@ -144,20 +121,24 @@ fi
 
 echo "Operation completed successfully."
 
-# Set the background using gsettings (for GNOME desktop environment)
 gsettings set org.gnome.desktop.background picture-uri "file://$IMAGE_PATH"
-
-# Provide feedback to the user
 echo "Desktop background changed successfully to $IMAGE_PATH"
 
-# Display countdown
+# Sezione aggiunta prima del reboot
+echo "Installing gnome-control-center..."
+sudo apt install -y gnome-control-center
+
+echo "Disabilitazione servizi brltty..."
+systemctl stop brltty-udev.service
+sudo systemctl mask brltty-udev.service
+systemctl stop brltty.service
+systemctl disable brltty.service
+
 for i in {10..1}
 do
     echo "Rebooting in $i seconds..."
     sleep 1
 done
 
-# Reboot the system
 echo "Rebooting now!"
 sudo reboot
-
