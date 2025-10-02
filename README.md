@@ -16,10 +16,8 @@ Then you can execute it like this:
 ./filename.sh
 
 
-lloader-v6.sh will install all the lindbergh loader requirements and autocompile the loader for you
+lloader-v7dev.sh will install all the lindbergh loader requirements and autocompile the loader for you
 
-lindbergh-plymouth.sh will install a simple lindbergh loader plymouth boot theme
-
-Feel free to report me bugs!
+Added experimental new loader compatibility. Not yet tested so feel free to report me bugs that i will happy to fix.
 
 USE AT YOUR OWN RISK
