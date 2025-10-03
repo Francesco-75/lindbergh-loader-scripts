@@ -1,19 +1,23 @@
 #!/bin/bash
 set -e
 
-echo "****************************************************************************"
+# Colore oro: RGB 255,215,0
+GOLD='\e[38;2;255;215;0m'
+RESET='\e[0m'
+
+echo -e "${GOLD}****************************************************************************"
 echo "*  ██╗     ██╗███╗   ██╗██████╗ ██████╗ ███████╗██████╗  ██████╗ ██╗  ██╗  *"
-echo "*  ██║     ██║████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝ ██║  ██║ [...]"
+echo "*  ██║     ██║████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝ ██║  ██║  *"
 echo "*  ██║     ██║██╔██╗ ██║██║  ██║██████╔╝█████╗  ██████╔╝██║  ███╗███████║  *"
 echo "*  ██║     ██║██║╚██╗██║██║  ██║██╔══██╗██╔══╝  ██╔══██╗██║   ██║██╔══██║  *"
-echo "*  ███████╗██║██║ ╚████║██████╔╝██████╔╝███████╗██║  ██║╚██████╔╝██║  [...]"
-echo "*  ╚══════╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝ [...]"
+echo "*  ███████╗██║██║ ╚████║██████╔╝██████╔╝███████╗██║  ██║╚██████╔╝██║  ██║  *"
+echo "*  ╚══════╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝  *"
 echo "*                                                                          *"
-echo "*           Welcome to the Automated Package Installer                     *"
-echo "*                  Lindbergh Loader 2.1.x compliant                        *"
+echo "*         Welcome to the Automated Package Installer by Francesco-75       *"
+echo "*                  Now it's Lindbergh Loader 2.1.x compliant               *"
 echo "*                   Installing required packages...                        *"
 echo "*                                                                          *"
-echo "****************************************************************************"
+echo "****************************************************************************${RESET}"
 
 # Add current user to dialout and input groups
 target_user="${SUDO_USER:-$USER}"
@@ -140,9 +144,12 @@ else
     echo "Warning: lindbergh executable not found in build/ nor in root."
 fi
 
-echo "Opening the build directory..."
-cd ..
-xdg-open "$(pwd)/lindbergh-loader/build" &
+# Le seguenti righe aprivano automaticamente la cartella dopo il build.
+# Sono ora commentate per disabilitare il popup dopo 'make'.
+# Per riattivare, decommenta le righe qui sotto.
+# echo "Opening the build directory..."
+# cd ..
+# xdg-open "$(pwd)/lindbergh-loader/build" &
 
 # Install Theme
 REPO_URL="https://github.com/Francesco-75/lindbergh-plymouth.git"
@@ -184,14 +191,14 @@ sudo systemctl stop brltty.service || true
 sudo systemctl disable brltty.service || true
 
 # Show patreon message just before reboot
-echo "*********************************************************************************"
+echo -e "${GOLD}*********************************************************************************"
 echo "*            If you found this software useful, consider supporting it!         *"
 echo "*                https://patreon.com/LindberghLoader                            *"
-echo "*********************************************************************************"
+echo "*********************************************************************************${RESET}"
 
-echo "*********************************************************************************"
+echo -e "${GOLD}*********************************************************************************"
 echo "*          All packages installed and Lindbergh Loader built successfully!      *"
-echo "*********************************************************************************"
+echo "*********************************************************************************${RESET}"
 
 # Confirm before reboot
 echo ""
