@@ -23,3 +23,5 @@ lindbergh-plymouth.sh will install a simple lindbergh loader plymouth boot theme
 Feel free to report me bugs!
 
 USE AT YOUR OWN RISK
+
+NOW DEPRECATED, USE THE EXPERIMENTAL DEV BRANCH.
