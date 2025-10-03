@@ -10,3 +10,81 @@ Not so much tested here but it must work.
 Feel free to report me bugs that i will happy to fix.
 
 USE AT YOUR OWN RISK
+
+# Lindbergh Loader v7 Development Script
+
+This repository contains the **lloader-v7dev.sh** script, a comprehensive automation tool for setting up and building the Lindbergh Loader and its required dependencies on a Debian/Ubuntu-based Linux system.
+
+## What Does This Script Do?
+
+The script is designed to automate the following tasks:
+
+1. **System Preparation**
+    - Adds the current user to the `dialout` and `input` groups (needed for hardware and device access).
+    - Enables support for 32-bit (`i386`) architecture, required for certain dependencies.
+    - Updates and upgrades the system package lists.
+
+2. **Dependency Installation**
+    - Checks for Git and installs it if missing.
+    - Installs a broad set of build tools and libraries, including 32-bit and multilib packages required for Lindbergh Loader and related components.
+    - Installs audio, graphics, and other essential libraries for both development and runtime.
+
+3. **Build Dependencies from Source**
+    - Clones and builds the latest SDL3, SDL3_ttf, SDL3_image, and FAudio from their respective upstream repositories, targeting 32-bit builds for compatibility.
+    - Installs these freshly built libraries system-wide.
+
+4. **Lindbergh Loader Build**
+    - Clones the [lindbergh-loader](https://github.com/lindbergh-loader/lindbergh-loader) repository.
+    - Builds Lindbergh Loader using `make`.
+    - Generates default configuration and control files using the built executable.
+
+5. **Theme Installation**
+    - Clones the [lindbergh-plymouth](https://github.com/Francesco-75/lindbergh-plymouth) theme repository.
+    - Copies the theme background image to your Pictures directory.
+    - Sets the GNOME desktop background to the new image.
+
+6. **System Setup**
+    - Installs `gnome-control-center` if not already present (for desktop settings).
+    - Disables `brltty` services (Braille display support) to prevent conflicts with some input devices.
+
+
+## Usage
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/Francesco-75/lindbergh-loader-scripts.git
+   cd lindbergh-loader-scripts
+   ```
+
+2. **Run the Script**
+
+   > **Warning:** This script requires `sudo` privileges and will reboot your system at the end.  
+   > Make sure you have saved your work before proceeding.
+
+   ```bash
+   chmod +x lloader-v7dev.sh
+   ./lloader-v7dev.sh
+   ```
+
+3. **Follow On-Screen Prompts**
+    - The script will prompt before rebooting. Press Enter to continue or Ctrl+C to cancel the reboot.
+
+## Requirements
+
+- Ubuntu 22.04.5 Linux distribution
+- Internet connection (for cloning repositories and downloading packages)
+- Sudo privileges
+
+## Notes
+
+- This script modifies system libraries and user groups, and installs/removes packages. Use with caution, ideally on a fresh or dedicated system. USE AT YOUR OWN RISK!
+- The script is intended for development and testing purposes and may install a large number of dependencies.
+- For more information about Lindbergh Loader, visit the [main repository](https://github.com/lindbergh-loader/lindbergh-loader).
+
+---
+
+**Support the project:**  
+If you find Lindbergh Loader helpful, consider supporting development via [Patreon](https://patreon.com/LindberghLoader).
+
+---
