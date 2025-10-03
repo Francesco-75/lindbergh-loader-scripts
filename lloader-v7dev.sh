@@ -17,7 +17,7 @@ echo "*         Welcome to the Automated Package Installer by Francesco-75      
 echo "*                  Now it's Lindbergh Loader 2.1.x compliant               *"
 echo "*                   Installing required packages...                        *"
 echo "*                                                                          *"
-echo "****************************************************************************${RESET}"
+echo -e "****************************************************************************${RESET}"
 
 # Add current user to dialout and input groups
 target_user="${SUDO_USER:-$USER}"
@@ -194,11 +194,11 @@ sudo systemctl disable brltty.service || true
 echo -e "${GOLD}*********************************************************************************"
 echo "*            If you found this software useful, consider supporting it!         *"
 echo "*                https://patreon.com/LindberghLoader                            *"
-echo "*********************************************************************************${RESET}"
+echo -e "*********************************************************************************${RESET}"
 
 echo -e "${GOLD}*********************************************************************************"
 echo "*          All packages installed and Lindbergh Loader built successfully!      *"
-echo "*********************************************************************************${RESET}"
+echo -e "*********************************************************************************${RESET}"
 
 # Confirm before reboot
 echo ""
