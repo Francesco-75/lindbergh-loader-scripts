@@ -36,7 +36,7 @@ The script is designed to automate the following tasks:
 4. **Lindbergh Loader Build**
     - Clones the [lindbergh-loader](https://github.com/lindbergh-loader/lindbergh-loader) repository.
     - Builds Lindbergh Loader using `make`.
-    - > 🔴 **Generates the new needed DEFAULT CONFIGURATION and DEFAULT CONTROLS FILES** using the built executable (`--create config` and `--create controls`).
+    - > 🔴 **Generates the new needed DEFAULT CONFIGURATION and DEFAULT CONTROLS FILES** using the built executable
 
 5. **Theme Installation**
     - Clones the [lindbergh-plymouth](https://github.com/Francesco-75/lindbergh-plymouth) theme repository.
