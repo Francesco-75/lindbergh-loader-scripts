@@ -1,3 +1,5 @@
+NOW DEPRECATED, USE THE DEV BRANCH THAT IS ACTUALLY COMPATIBLE WITH THE NEW LINUX LINDBERGH LOADER VERSION
+
 ![Screenshot from 2024-12-23 22-09-46](https://github.com/user-attachments/assets/4950c1e7-249c-4b7c-b6af-59f4b8b1a657)
 
 ![install-script](https://github.com/user-attachments/assets/f7caefee-ddce-491e-8ee5-ed18f2fb8d5c)
@@ -23,5 +25,3 @@ lindbergh-plymouth.sh will install a simple lindbergh loader plymouth boot theme
 Feel free to report me bugs!
 
 USE AT YOUR OWN RISK
-
-NOW DEPRECATED, USE THE EXPERIMENTAL DEV BRANCH.
