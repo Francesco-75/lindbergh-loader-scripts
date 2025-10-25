@@ -73,6 +73,10 @@ sudo apt install -y libasound2-dev:i386
 sudo apt install -y alsa-utils:i386
 sudo apt-get install -y libasound2-plugins:i386
 sudo apt install -y pipewire-audio-client-libraries:i386
+
+# Install base PipeWire packages so the audio card is detected on Ubuntu 22.04
+sudo apt install -y pipewire pipewire-audio-client-libraries wireplumber
+
 sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 echo "Cloning the Lindbergh Loader repository..."
