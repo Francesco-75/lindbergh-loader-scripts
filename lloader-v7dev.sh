@@ -161,9 +161,11 @@ fi
 # Install Theme
 REPO_URL="https://github.com/Francesco-75/lindbergh-plymouth.git"
 REPO_DIR="$HOME/Downloads/lindbergh-plymouth"
-BACKGROUND_IMAGE="$REPO_DIR/loader-background.png"
+#BACKGROUND_IMAGE="$REPO_DIR/loader-background.png"
+BACKGROUND_IMAGE="$REPO_DIR/background1080black.png"
 DEST_DIR="$HOME/Pictures"
-IMAGE_PATH="$HOME/Pictures/loader-background.png"
+#IMAGE_PATH="$HOME/Pictures/loader-background.png"
+IMAGE_PATH="$HOME/Pictures/background1080black.png"
 
 if [ ! -d "$REPO_DIR" ]; then
   echo "Cloning theme repository..."
