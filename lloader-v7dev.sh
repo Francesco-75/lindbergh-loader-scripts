@@ -57,6 +57,7 @@ sudo apt -y install --no-install-recommends \
   libudev-dev:i386 libxcursor-dev:i386 libxfixes-dev:i386 libxi-dev:i386 libxrandr-dev:i386 libxss-dev:i386 libxxf86vm-dev:i386 git libvulkan1:i386 \
   mesa-vulkan-drivers:i386
 
+sudo apt install -y libxtst-dev libxtst-dev:i386
 sudo apt install -y freeglut3:i386
 sudo apt install -y freeglut3-dev:i386
 sudo apt install -y libglew-dev
