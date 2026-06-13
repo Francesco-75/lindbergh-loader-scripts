@@ -97,7 +97,7 @@ git clone https://github.com/libsdl-org/SDL.git
 cd SDL
 mkdir build
 cd build
-cmake ../ -DCMAKE_C_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr
+cmake ../ -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr -DSDL_TESTS=OFF
 make -j4
 sudo make install
 cd ../../
@@ -107,7 +107,7 @@ git clone https://github.com/libsdl-org/SDL_ttf.git
 cd SDL_ttf
 mkdir build
 cd build
-cmake ../ -DCMAKE_C_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr
+cmake ../ -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr -DSDLTTF_SAMPLES=OFF
 make -j4
 sudo make install
 cd ../../
@@ -117,7 +117,7 @@ git clone https://github.com/libsdl-org/SDL_image.git
 cd SDL_image
 mkdir build
 cd build
-cmake ../ -DCMAKE_C_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr
+cmake ../ -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr -DSDLIMAGE_SAMPLES=OFF
 make -j4
 sudo make install
 cd ../../
