@@ -17,15 +17,23 @@ echo -e "${GOLD}*  ╚══════╝╚═╝╚═╝  ╚═══╝�
 echo -e "${GOLD}*                                                                          *"
 echo -e "${GOLD}*         ${GREEN}Welcome to the Automated Package Installer${RESET}${GOLD} ${RED}by Francesco-75${RESET}${GOLD}       *"
 echo -e "${GOLD}*                  ${GREEN}Now it's Lindbergh Loader 2.1.x compliant${RESET}${GOLD}               *"
-echo -e "${GOLD}*                   ${GREEN}Installer script v7.1${RESET}${GOLD}                                  *"
+echo -e "${GOLD}*                   ${GREEN}Installer script v7.1${RESET}${GOLD}                        *"
 echo -e "${GOLD}*                                                                          *"
 echo -e "${GOLD}****************************************************************************${RESET}"
 
 # Cleanup from previous runs
 SCRIPT_DIR="$(pwd)"
 if [ -d "$SCRIPT_DIR/lindbergh-loader" ]; then
-    echo "Cleaning up previous installation..."
-    rm -rf "$SCRIPT_DIR/lindbergh-loader"
+    echo ""
+    echo -e "${RED}Warning: directory 'lindbergh-loader' already exists from a previous run.${RESET}"
+    read -p "Do you want to delete it and start fresh? [y/N] " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        echo "Cleaning up previous installation..."
+        rm -rf "$SCRIPT_DIR/lindbergh-loader"
+    else
+        echo "Aborting. Please remove the directory manually or run from a different location."
+        exit 1
+    fi
 fi
 
 # Add current user to dialout and input groups
