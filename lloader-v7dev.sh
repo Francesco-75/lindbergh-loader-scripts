@@ -17,9 +17,16 @@ echo -e "${GOLD}*  ╚══════╝╚═╝╚═╝  ╚═══╝�
 echo -e "${GOLD}*                                                                          *"
 echo -e "${GOLD}*         ${GREEN}Welcome to the Automated Package Installer${RESET}${GOLD} ${RED}by Francesco-75${RESET}${GOLD}       *"
 echo -e "${GOLD}*                  ${GREEN}Now it's Lindbergh Loader 2.1.x compliant${RESET}${GOLD}               *"
-echo -e "${GOLD}*                   ${GREEN}Installing required packages...${RESET}${GOLD}                        *"
+echo -e "${GOLD}*                   ${GREEN}Installer script v7.1${RESET}${GOLD}                                  *"
 echo -e "${GOLD}*                                                                          *"
 echo -e "${GOLD}****************************************************************************${RESET}"
+
+# Cleanup from previous runs
+SCRIPT_DIR="$(pwd)"
+if [ -d "$SCRIPT_DIR/lindbergh-loader" ]; then
+    echo "Cleaning up previous installation..."
+    rm -rf "$SCRIPT_DIR/lindbergh-loader"
+fi
 
 # Add current user to dialout and input groups
 target_user="${SUDO_USER:-$USER}"
@@ -78,7 +85,20 @@ sudo apt install -y pipewire-audio-client-libraries:i386
 # Install base PipeWire packages so the audio card is detected on Ubuntu 22.04
 sudo apt install -y pipewire pipewire-audio-client-libraries wireplumber
 
-sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+# Remove conflicting ALSA/PipeWire override if present from previous installs
+sudo rm -f /etc/alsa/conf.d/99-pipewire-default.conf
+
+# Fix pipewire session manager symlink (wireplumber replaces pipewire-media-session)
+sudo rm -f /etc/systemd/user/pipewire-session-manager.service
+sudo ln -sf /usr/lib/systemd/user/wireplumber.service \
+    /etc/systemd/user/pipewire-session-manager.service
+
+# Fix GNOME Settings audio test: install pulse backend for libcanberra
+sudo apt install -y libcanberra-pulse
+
+# Fix GNOME Settings audio test: audio-test-signal.oga missing from Yaru theme
+sudo ln -sf /usr/share/sounds/freedesktop/stereo/audio-test-signal.oga \
+    /usr/share/sounds/Yaru/stereo/audio-test-signal.oga
 
 echo "Cloning the Lindbergh Loader repository..."
 git clone https://github.com/lindbergh-loader/lindbergh-loader.git
